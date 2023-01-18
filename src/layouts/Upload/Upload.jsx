@@ -17,10 +17,7 @@ function Upload() {
 
     const preventDefault = event => event.preventDefault()
 
-    async function handleDrop(event) {
-        event.preventDefault()
-
-        const image = event.dataTransfer.files[0]
+    async function uploadImage(image) {
         if (!image.type.includes('image/')) return setError(true)
 
         changeImage(image)
@@ -32,15 +29,33 @@ function Upload() {
             setError(false)
             changeLoading(false)
             changeLayout('Uploaded')
-            console.log(snapshot, 'Uploaded image!')
         })
         .catch(error => setError(error))
+    }
+    
+
+    async function handleDrop(event) {
+        preventDefault(event)
+
+        const image = event.dataTransfer.files[0]
+        uploadImage(image)
+    }
+    
+    function imageHandler(event) {
+        preventDefault(event)
+
+        const image = event.target.files[0]
+        uploadImage(image)
+    }
+
+    function chooseFile() {
+        document.getElementById('upload-input').click()
     }
 
   return (
     <Card id='upload'>
         <h1>Upload your image</h1>
-        <p className={`${error ? 'error' : ''}`}>File should be Jpeg, Png, ...</p>
+        <p className={`${error ? 'error' : ''}`}>{error ? `Error, file should be Jpeg, Png, ... or Firebase service doesn't available now` : 'File should be Jpeg, Png, ...'}</p>
         <div className='dropzone'
         onDragOver={preventDefault}
         onDragEnter={preventDefault}
@@ -52,7 +67,8 @@ function Upload() {
             <p>Drag & Drop your image here</p>
         </div>
         <p>Or</p>
-        <Button>Choose a file</Button>
+        <input type="file" accept='image/*' onChange={imageHandler} id="upload-input" style={{ display: 'none' }} />
+        <Button onClick={chooseFile}>Choose a file</Button>
     </Card>
   )
 }
