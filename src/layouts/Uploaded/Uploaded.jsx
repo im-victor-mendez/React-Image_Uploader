@@ -1,3 +1,5 @@
+import './Uploaded.scss'
+
 import { getDownloadURL, ref } from '@firebase/storage'
 import React, { useState } from 'react'
 import { Button } from '../../components/Button/Button'
@@ -20,15 +22,18 @@ function Uploaded() {
   return (
     <Card id='uploaded'>
         <div className='done-div'>
-            <i className='done material-symbols-outlined'>Done</i>
+            <i className='material-symbols-outlined'>Done</i>
             <h1>Uploaded Successfully!</h1>
         </div>
 
         <img src={imageUrl} alt="" />
 
         <div className='image-link'>
-            <p className='img-url'>{imageUrl}</p>
-            <Button onClick={copyLink}>Copy Link</Button>
+          <div className='image-link-text'>
+            <p className='image-url'>{imageUrl}</p>
+            <p className='image-suspense'>...</p>
+          </div>
+          <Button onClick={copyLink}>Copy Link</Button>
         </div>
     </Card>
   )
