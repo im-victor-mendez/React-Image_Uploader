@@ -1,3 +1,5 @@
+import './Upload.scss'
+
 import React, { useState } from 'react'
 import IMAGE from '../../assets/image.svg'
 import { ref, uploadBytes } from '@firebase/storage'

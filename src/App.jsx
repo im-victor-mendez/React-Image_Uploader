@@ -1,4 +1,4 @@
-import './App.css'
+import './App.scss'
 import { useLayout } from './contexts/layoutContext'
 import Loading from './layouts/Loading/Loading'
 import Upload from './layouts/Upload/Upload'

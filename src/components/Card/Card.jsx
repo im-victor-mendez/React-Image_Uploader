@@ -1,3 +1,5 @@
+import './Card.scss'
+
 import React from 'react'
 
 function Card({ id, children }) {

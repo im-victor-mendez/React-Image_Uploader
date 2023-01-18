@@ -1,0 +1,12 @@
+@import url(./styles/fonts.sass);
+@import url(./styles/colors.scss);
+
+.App {
+    background-color: whitesmoke;
+
+    font-family: var(--font-family);
+
+    * {
+        margin: 0;
+    }
+}
