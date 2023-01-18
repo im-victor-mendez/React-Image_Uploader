@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import IMAGE from '../assets/image.svg'
+import IMAGE from '../../assets/image.svg'
 import { ref, uploadBytes } from '@firebase/storage'
-import { storage } from '../firebase'
-import Card from '../components/Card/Card'
-import { Button } from '../components/Button/Button'
+import { storage } from '../../firebase'
+import Card from '../../components/Card/Card'
+import { Button } from '../../components/Button/Button'
 
 function Upload() {
     const [error, setError] = useState(false)
