@@ -5,11 +5,13 @@ import { storage } from '../../firebase'
 import Card from '../../components/Card/Card'
 import { Button } from '../../components/Button/Button'
 import { useLayout } from '../../contexts/layoutContext'
+import { useImage } from '../../contexts/imageContext'
 
 function Upload() {
     const [error, setError] = useState(false)
 
     const { changeLayout, changeLoading } = useLayout()
+    const { changeImage } = useImage()
 
     const preventDefault = event => event.preventDefault()
 
@@ -19,6 +21,7 @@ function Upload() {
         const image = event.dataTransfer.files[0]
         if (!image.type.includes('image/')) return setError(true)
 
+        changeImage(image)
         changeLoading(true)
 
         const fileRef = ref(storage, `images/${image.name}`)
