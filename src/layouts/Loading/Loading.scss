@@ -1,0 +1,44 @@
+#loading {
+    display: flex;
+    flex-direction: column;
+    gap: 30.74px;
+}
+
+.loading_bar-base {
+    background-color: var(--light-gray);
+
+    width: -webkit-fill-available;
+    max-width: 340px;
+    height: 6px;
+
+    border-radius: 8px;
+}
+
+.loading_bar-line {
+    background-color: var(--blue);
+
+    width: 30%;
+    max-width: 100.93px;
+    height: 6px;
+
+    border-radius: 8px;
+
+    -webkit-animation-name: "slide";
+    -webkit-animation-duration: 2.5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes slide {
+    0% {
+        -webkit-transform: translateX(0%);
+    }
+
+    50% {
+        -webkit-transform: translateX(232%);
+    }
+
+    100% {
+        -webkit-transform: translateX(0%);
+    }
+}
