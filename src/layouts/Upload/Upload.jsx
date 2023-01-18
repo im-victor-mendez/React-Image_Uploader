@@ -4,9 +4,13 @@ import { ref, uploadBytes } from '@firebase/storage'
 import { storage } from '../../firebase'
 import Card from '../../components/Card/Card'
 import { Button } from '../../components/Button/Button'
+import { useLayout } from '../../contexts/layoutContext'
 
 function Upload() {
     const [error, setError] = useState(false)
+
+    const { changeLayout, changeLoading } = useLayout()
+
     const preventDefault = event => event.preventDefault()
 
     async function handleDrop(event) {
@@ -15,10 +19,14 @@ function Upload() {
         const image = event.dataTransfer.files[0]
         if (!image.type.includes('image/')) return setError(true)
 
+        changeLoading(true)
+
         const fileRef = ref(storage, `images/${image.name}`)
         await uploadBytes(fileRef, image)
-        .then(snapshot => {
+        .finally(() => {
             setError(false)
+            changeLoading(false)
+            changeLayout('Uploaded')
             console.log(snapshot, 'Uploaded image!')
         })
         .catch(error => setError(error))
